@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-scroll";
 import { IconButton } from "@mui/material";
-import CloseIcon from "@mui/icons-material/close";
+
+import CloseIcon from "@mui/icons-material/Close";
 
 import Logo from "../Logo";
 import { menu } from "./Header";
