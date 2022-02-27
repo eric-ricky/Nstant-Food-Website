@@ -8,7 +8,7 @@ import Form from "../components/Form";
 const Banner = () => {
   return (
     <MainContainer id="home">
-      <Inner>
+      <Inner style={{ display: "flex" }}>
         <Content>
           <h2 className={"title"}>Don't miss out!!</h2>
           <p>
@@ -44,11 +44,10 @@ const Inner = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-direction: row !important;
   @media (max-width: 768px) {
     padding-top: 8rem;
     padding-bottom: 2.625rem;
-    flex-direction: column !important;
+    flex-direction: column;
   }
 `;
 

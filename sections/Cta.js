@@ -4,8 +4,8 @@ import Form from "../components/Form";
 
 const Cta = () => {
   return (
-    <MainContainer style={{ display: "flex" }} id="cta">
-      <Inner>
+    <MainContainer id="cta">
+      <Inner style={{ display: "flex" }}>
         <h5>Get Notified</h5>
         <Form
           style={{
