@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Sticky innerZ={1001} top={0} onStateChange={handleChange}>
-        <Header sticky={isSticky} />
+        <Header isSticky={isSticky} />
       </Sticky>
 
       <main>{children}</main>

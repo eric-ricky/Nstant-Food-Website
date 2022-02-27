@@ -13,6 +13,7 @@ const Features = () => {
         layout="fill"
         objectFit="cover"
         quality={100}
+        priority
       />
       <Inner>
         <h5>You can hear the smell ;)</h5>
@@ -28,6 +29,7 @@ const MainContainer = styled.div`
   display: grid;
   place-items: center;
   min-height: 70vh;
+  background: rgba(0, 0, 0, 0.9);
 `;
 
 const Inner = styled.div`

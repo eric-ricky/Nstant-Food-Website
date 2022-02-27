@@ -1,8 +1,8 @@
 import styled from "styled-components";
+import Image from "next/image";
 import { Container } from "@mui/material";
 
-import BannerImg from "../assets/images/banner_1.png";
-import Image from "next/image";
+import BannerImg from "../public/banner_1.png";
 import Form from "../components/Form";
 
 const Banner = () => {
@@ -29,21 +29,26 @@ const Banner = () => {
 export default Banner;
 
 const MainContainer = styled.div`
+  padding-top: 8rem;
   min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: #f6f8fb;
+  @media (max-width: 768px) {
+    padding-top: 2rem;
+  }
 `;
 
 const Inner = styled(Container)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row !important;
   @media (max-width: 768px) {
     padding-top: 8rem;
     padding-bottom: 2.625rem;
-    flex-direction: column;
+    flex-direction: column !important;
   }
 `;
 

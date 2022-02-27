@@ -9,7 +9,6 @@ const Cta = () => {
         <h5>Get Notified</h5>
         <Form
           style={{
-            // width: "400px",
             marginTop: "2rem",
             display: "flex",
             justifyContent: "center",
@@ -23,12 +22,9 @@ const Cta = () => {
 export default Cta;
 
 const MainContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 2rem;
-  padding-bottom: 4rem;
   min-height: 45vh;
+  display: grid;
+  place-items: center;
 `;
 
 const Inner = styled(Container)`

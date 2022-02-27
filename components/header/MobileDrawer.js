@@ -49,9 +49,9 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   position: fixed;
-  top: ${(props) => (!props.open ? "-275%" : "50%")};
+  top: ${(props) => (!props.open ? "-425%" : "50%")};
   left: 0;
-  height: 60vh;
+  min-height: 60vh;
   width: 100%;
   background: #ff1100;
   z-index: 500;

@@ -26,7 +26,7 @@ export const menu = [
   },
 ];
 
-const Header = ({ sticky }) => {
+const Header = ({ isSticky }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const clickHandler = () => {
@@ -34,7 +34,7 @@ const Header = ({ sticky }) => {
   };
 
   return (
-    <MainContainer sticky={sticky}>
+    <MainContainer style={{ position: `${isSticky ? "fixed" : "absolute"}` }}>
       <Inner>
         <Logo />
         <MenuContainer>
@@ -74,7 +74,6 @@ const Header = ({ sticky }) => {
 export default Header;
 
 const MainContainer = styled(Container)`
-  position: ${(props) => (props.sticky ? "fixed" : "absolute")};
   top: 0;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -133,9 +132,9 @@ const Button = styled.button`
 `;
 
 const MobileButton = styled(IconButton)`
-  display: none;
+  display: none !important;
   margin-left: 0.125rem;
   @media (max-width: 768px) {
-    display: block;
+    display: block !important;
   }
 `;
