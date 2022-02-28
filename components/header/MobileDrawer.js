@@ -45,11 +45,11 @@ const MobileDrawer = ({ open, setMobileOpen }) => {
 export default MobileDrawer;
 
 const Container = styled.div`
-  display: ${(props) => (!props.open ? "none" : "flex")};
+  display: flex;
   flex-direction: column;
   align-items: center;
   position: fixed;
-  top: ${(props) => (!props.open ? "-425%" : "50%")};
+  top: ${(props) => (!props.open ? "-625%" : "50%")};
   left: 0;
   min-height: 60vh;
   width: 100%;
@@ -58,7 +58,7 @@ const Container = styled.div`
   margin: 0rem;
   padding: 2.0125rem 1.0125rem;
   padding-bottom: 1rem;
-  transition: all 0.4s ease;
+  transition: all 0.4s ease-out;
 `;
 
 const Header = styled.div`
@@ -77,7 +77,6 @@ const Close = styled(IconButton)`
 `;
 
 const MenuContainer = styled.div`
-  /* background: green; */
   flex: 1;
   width: 100%;
   display: flex;
