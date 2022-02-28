@@ -45,7 +45,7 @@ const MobileDrawer = ({ open, setMobileOpen }) => {
 export default MobileDrawer;
 
 const Container = styled.div`
-  display: flex;
+  display: ${(props) => (!props.open ? "none" : "flex")};
   flex-direction: column;
   align-items: center;
   position: fixed;

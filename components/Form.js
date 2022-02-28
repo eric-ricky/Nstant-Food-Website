@@ -28,10 +28,19 @@ const Form = ({ style }) => {
       return;
     }
 
-    const docRef = await addDoc(collection(db, "contact"), {
-      email,
-      timestamp: serverTimestamp(),
-    });
+    try {
+      const docRef = await addDoc(collection(db, "contact"), {
+        email,
+        timestamp: serverTimestamp(),
+      });
+      console.log(docRef);
+    } catch (error) {
+      console.log(error);
+
+      setLoading(false);
+      setError("Something went wrong!");
+      emailRef.current.value = "";
+    }
 
     emailjs
       .sendForm(
@@ -53,7 +62,6 @@ const Form = ({ style }) => {
     setError(false);
     setSuccess("Email submited successfully");
     emailRef.current.value = "";
-
     setTimeout(() => {
       setSuccess(null);
     }, 2500);

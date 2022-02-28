@@ -19,7 +19,7 @@ const Banner = () => {
         </Content>
 
         <ImageContainer>
-          <Image src={BannerImg} alt="humb" />
+          <Image src={BannerImg} quality={100} priority alt="humb" />
         </ImageContainer>
       </Inner>
     </MainContainer>
@@ -45,7 +45,7 @@ const Inner = styled(Container)`
   align-items: center;
   justify-content: space-between;
   @media (max-width: 768px) {
-    padding-top: 8rem;
+    padding-top: 5rem;
     padding-bottom: 2.625rem;
     flex-direction: column;
   }
