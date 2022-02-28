@@ -6,11 +6,12 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Script
+        id="first-script"
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=G-2B6KSDLLS`}
       />
 
-      <Script strategy="lazyOnload">
+      <Script id="second-script" strategy="lazyOnload">
         {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
