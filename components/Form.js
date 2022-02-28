@@ -1,95 +1,61 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import * as EmailValidator from "email-validator";
-import emailjs from "@emailjs/browser";
 
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { db } from "../firebase/config";
+import axios from "axios";
 
 const Form = ({ style }) => {
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(null);
-
-  const form = useRef();
-  const emailRef = useRef();
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState("IDLE");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (loading) return;
-    setLoading(true);
-
-    const email = emailRef.current.value;
-
-    if (!email && !EmailValidator.validate(email)) {
-      setError("Please enter a valid email address");
-      setLoading(false);
+    if (!email || !EmailValidator.validate(email)) {
+      setState("ERROR");
+      setErrorMessage("Please enter a valid email address");
       return;
     }
 
+    setState("LOADING");
+    setErrorMessage(null);
+
     try {
-      const docRef = await addDoc(collection(db, "contact"), {
-        email,
-        timestamp: serverTimestamp(),
-      });
-      console.log(docRef);
+      const response = await axios.post("/api/subscribe", { email });
+
+      setState("SUCCESS");
+      setEmail("");
     } catch (error) {
-      console.log(error);
-
-      setLoading(false);
-      setError("Something went wrong!");
-      emailRef.current.value = "";
+      setErrorMessage(error.response.data.error);
+      setState("ERROR");
     }
-
-    emailjs
-      .sendForm(
-        "service_2cubvtk",
-        "template_irr6rtw",
-        form.current,
-        "user_M1oevbwwWtUWAgveEsw0c"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-
-    setLoading(false);
-    setError(false);
-    setSuccess("Email submited successfully");
-    emailRef.current.value = "";
-    setTimeout(() => {
-      setSuccess(null);
-    }, 2500);
   };
+
+  if (state === "SUCCESS")
+    return (
+      <p style={{ color: "green", fontSize: "18px" }}>
+        CONGRATULATIONS!! A notification will be sent straight into your inbox
+      </p>
+    );
 
   return (
     <>
-      <InputContainer style={style} ref={form} onSubmit={handleSubmit}>
+      <InputContainer style={style} onSubmit={handleSubmit}>
         <Input
-          type="email"
-          required
+          type="text"
           placeholder="Enter your email"
-          name="email"
-          ref={emailRef}
-          // onClick={setError(false)}
+          value={email}
+          required
+          onChange={(e) => setEmail(e.target.value)}
         />
         <InputBtn type="submit">
-          {loading ? "Sending..." : "Notify me"}
+          {state === "LOADING" ? "Sending..." : "Notify me"}
         </InputBtn>
       </InputContainer>
-      {error && (
-        <p style={{ color: "orange", fontSize: "18px", marginTop: "5px" }}>
-          {error}
-        </p>
-      )}
-      {success && (
-        <p style={{ color: "green", fontSize: "18px", marginTop: "5px" }}>
-          {success}
+      {state === "ERROR" && (
+        <p style={{ color: "orange", fontSize: "18px", marginTop: "2px" }}>
+          {errorMessage}
         </p>
       )}
     </>
@@ -134,4 +100,8 @@ const InputBtn = styled.button`
   outline: none;
   cursor: pointer;
   width: 30%;
+  transition: all 0.4s ease;
+  :hover {
+    opacity: 0.7;
+  }
 `;
