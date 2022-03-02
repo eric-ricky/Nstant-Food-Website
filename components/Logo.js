@@ -21,6 +21,9 @@ const Container = styled.div`
     font-weight: 400;
     letter-spacing: 2px;
     font-family: "Lobster", cursive;
+    @media (max-width: 768px) {
+      font-size: 28px;
+    }
 
     > span {
       color: #000;

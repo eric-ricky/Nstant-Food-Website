@@ -61,7 +61,7 @@ const Header = ({ isSticky }) => {
           </Button>
           <MobileButton onClick={clickHandler}>
             <MenuIcon
-              style={{ fontSize: "38", fontWeight: 700, color: "#fff" }}
+              style={{ fontSize: "29px", fontWeight: 600, color: "#fff" }}
             />
           </MobileButton>
         </ButtonContainer>
@@ -90,7 +90,7 @@ const Inner = styled.div`
   padding: 1.265rem 2rem;
   box-shadow: 0px 5px 5px rgb(0 0 0 / 20%);
   @media (max-width: 768px) {
-    padding: 0.125rem 2rem;
+    padding: 0.0125rem 2rem;
   }
 `;
 
