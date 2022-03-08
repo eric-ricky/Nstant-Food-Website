@@ -12,8 +12,6 @@ const Form = ({ style }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(EmailValidator.validate(email));
-
     if (!email || !EmailValidator.validate(email)) {
       setState("ERROR");
       setErrorMessage(
@@ -32,8 +30,6 @@ const Form = ({ style }) => {
     } catch (error) {
       setErrorMessage(error.response.data.error);
       setState("ERROR");
-      console.dir(error);
-      console.log(error.response);
     }
   };
 
