@@ -12,9 +12,13 @@ const Form = ({ style }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log(EmailValidator.validate(email));
+
     if (!email || !EmailValidator.validate(email)) {
       setState("ERROR");
-      setErrorMessage("Please enter a valid email address");
+      setErrorMessage(
+        "Please enter a valid email address. Contact +254 710752939"
+      );
       return;
     }
 
@@ -23,12 +27,13 @@ const Form = ({ style }) => {
 
     try {
       const response = await axios.post("/api/subscribe", { email });
-
       setState("SUCCESS");
       setEmail("");
     } catch (error) {
       setErrorMessage(error.response.data.error);
       setState("ERROR");
+      console.dir(error);
+      console.log(error.response);
     }
   };
 
@@ -43,7 +48,7 @@ const Form = ({ style }) => {
     <>
       <InputContainer style={style} onSubmit={handleSubmit}>
         <Input
-          type="text"
+          type="email"
           placeholder="Enter your email"
           value={email}
           required
